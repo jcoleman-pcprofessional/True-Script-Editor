@@ -11,6 +11,11 @@ Built with SharePoint Framework GA, Office Fabric, and jQuery
 ## Used SharePoint Framework Version 
 ![drop](https://img.shields.io/badge/version-GA-green.svg)
 
+## Screenshots
+![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/full.png)
+![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/ss1.png)
+![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/settings.png)
+
 ## Applies to
 
 * [SharePoint Framework Developer Preview](http://dev.office.com/sharepoint/docs/spfx/sharepoint-framework-overview)
