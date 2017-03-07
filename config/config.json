@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/trueScriptEditor/TrueScriptEditorWebPart.js",
+      "manifest": "./src/webparts/trueScriptEditor/TrueScriptEditorWebPart.manifest.json",
+      "outputPath": "./dist/true-script-editor.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "trueScriptEditorStrings": "webparts/trueScriptEditor/loc/{locale}.js"
+  }
+}

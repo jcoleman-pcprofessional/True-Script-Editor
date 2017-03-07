@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "true-script-editor-client-side-solution",
+    "id": "ee1c0134-8052-4280-8448-287dd071fd0c",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/true-script-editor.sppkg"
+  }
+}

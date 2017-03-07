@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "true-script-editor",
+    "framework": "none",
+    "version": "1.0.0",
+    "libraryId": "ee1c0134-8052-4280-8448-287dd071fd0c"
+  }
+}
