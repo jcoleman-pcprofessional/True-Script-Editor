@@ -9,7 +9,7 @@
 
   "preconfiguredEntries": [{
     "groupId": "5b3ca4ee-a6df-493d-bd4f-8489a5b246a2",
-    "group": { "default": "Under Development" },
+    "group": { "default": "Modern Web Parts" },
     "title": { "default": "TrueScriptEditor" },
     "description": { "default": "A true script editor web part designed for Modern Pages in the SharePoint Framework" },
     "officeFabricIconFontName": "Embed",
