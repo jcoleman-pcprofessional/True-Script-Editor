@@ -13,8 +13,7 @@ Built with SharePoint Framework GA, Office Fabric, and jQuery
 
 ## Screenshots
 ![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/full.png)
-![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/ss1.png)
-![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/settings.png)
+![](https://raw.githubusercontent.com/jcoleman-pcprofessional/True-Script-Editor/master/assets/True-Script-Editor.png)
 
 ## Applies to
 
@@ -31,7 +30,7 @@ true-script-editor|Jeremy Coleman (PC Professional, Inc.)
 
 Version|Date|Comments
 -------|----|--------
-
+1.0.1|March 7th, 2017|Added HTML Editor option
 1.0.0|March 7th, 2017|Initial release
 
 ## Disclaimer
@@ -57,5 +56,6 @@ Sample Web Parts in this solution illustrate the following concepts on top of th
 - Load (multiple, csv delimited) external JS files onto the page
 - Execute script blocks on the page
 - Added CSS style directly to the page
+- Add HTML to render within the web part DOM element
 
 ![](https://telemetry.sharepointpnp.com/sp-dev-fx-webparts/samples/js-true-script-editor)

@@ -4,4 +4,5 @@ export interface ITrueScriptEditorWebPartProps {
   extJS:string;
   scriptEditor:string;
   cssEditor:string;
+  htmlEditor: string;
 }

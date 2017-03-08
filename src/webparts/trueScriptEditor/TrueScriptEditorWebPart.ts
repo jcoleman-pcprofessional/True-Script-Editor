@@ -19,8 +19,8 @@ export default class TrueScriptEditorWebPart extends BaseClientSideWebPart<ITrue
     var loaded = [];
     jQuery('head').append('<style truescript></style>');
     jQuery('link[truescript]').each(function(){ jQuery(this).remove(); });
-
-    if (this.properties.cssEditor || this.properties.extCSS || this.properties.extJS || this.properties.scriptEditor) {
+    jQuery(this.domElement).empty();
+    if (this.properties.cssEditor || this.properties.extCSS || this.properties.extJS || this.properties.scriptEditor || this.properties.htmlEditor) {
       if (this.properties.scriptEditor){
         window['jQuery'] = jQuery;
         eval(this.properties.scriptEditor);
@@ -44,6 +44,9 @@ export default class TrueScriptEditorWebPart extends BaseClientSideWebPart<ITrue
           jQuery('head').append('<link truescript rel="stylesheet" href="' + css + '" type="text/css" />');
         });
       }
+      if (this.properties.htmlEditor){
+        jQuery(this.domElement).html(this.properties.htmlEditor);
+      }      
     } else {
     this.domElement.innerHTML = `
       <div class="${styles.helloWorld}">
@@ -105,6 +108,11 @@ export default class TrueScriptEditorWebPart extends BaseClientSideWebPart<ITrue
                   label: 'CSS Editor',
                   multiline: true,
                   placeholder: 'CSS in this field will be added to the page, **Do not include <style> tags.'
+                }),
+                PropertyPaneTextField('htmlEditor',{
+                  label: 'HTML Editor',
+                  multiline: true,
+                  placeholder: 'HTML in this field will be added to the page, **Do not include <html>,<body> nor <footer> tags.'
                 })
               ]
             }
