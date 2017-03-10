@@ -13,41 +13,50 @@ import { ITrueScriptEditorWebPartProps } from './ITrueScriptEditorWebPartProps';
 import * as jQuery from 'jQuery';
 export default class TrueScriptEditorWebPart extends BaseClientSideWebPart<ITrueScriptEditorWebPartProps> {
 
+  private hasLoaded: boolean = false;
+
   public render(): void {
     window['trueScriptEditor'] = this;
-    window['jQuery'] = jQuery;
-    var loaded = [];
-    jQuery('head').append('<style truescript></style>');
-    jQuery('link[truescript]').each(function(){ jQuery(this).remove(); });
-    jQuery(this.domElement).empty();
-    if (this.properties.cssEditor || this.properties.extCSS || this.properties.extJS || this.properties.scriptEditor || this.properties.htmlEditor) {
-      if (this.properties.scriptEditor){
-        window['jQuery'] = jQuery;
-        eval(this.properties.scriptEditor);
-      }
-      if (this.properties.extJS){
-        this.properties.extJS.split(',').forEach(function(scr){
-          if (loaded.indexOf(scr) <= -1){
-            loaded.push(scr);
-            window['jQuery'].getScript(scr);
-          }
-        });
-      }
-      if (this.properties.cssEditor){
-        jQuery('style[truescript]').empty().html(this.properties.cssEditor);
-      }
-      if (this.properties.extCSS){
-        jQuery('link[truescript]').each(function(){
-          jQuery(this).remove();
-        });
-        this.properties.extCSS.split(',').forEach(function(css){
-          jQuery('head').append('<link truescript rel="stylesheet" href="' + css + '" type="text/css" />');
-        });
-      }
-      if (this.properties.htmlEditor){
-        jQuery(this.domElement).html(this.properties.htmlEditor);
-      }      
-    } else {
+	        window['jQuery'] = jQuery;
+	        var loaded = [];
+	        jQuery('head').append('<style truescript></style>');
+	        jQuery('link[truescript]').each(function () { jQuery(this).remove(); });
+	        jQuery(this.domElement).empty();
+	        if (!this.hasLoaded && (this.properties.cssEditor || this.properties.extCSS || this.properties.extJS || this.properties.scriptEditor || this.properties.htmlEditor)) {
+	            if (jQuery('#spPropertyPaneContainer button[aria-label=Close]').attr('tabindex') != "0") {
+	                this.hasLoaded = true;
+	                if (this.properties.extJS || this.properties.scriptEditor) {
+	                    window['jQuery'] = jQuery;
+	                    var extJS = this.properties.extJS.split(',');
+	                    if (this.properties.extJS) {
+	                        this.getScript(extJS, function () {
+	                            if (window['trueScriptEditor'].properties.scriptEditor) {
+	                                eval(window['trueScriptEditor'].properties.scriptEditor);
+	                            }
+	                        });
+	                    }
+	                    else {
+	                        if (this.properties.scriptEditor) {
+	                            eval(window['trueScriptEditor'].properties.scriptEditor);
+	                        }
+	                    }
+	                }
+	                if (this.properties.cssEditor) {
+	                    jQuery('style[truescript]').empty().html(this.properties.cssEditor);
+	                }
+	                if (this.properties.extCSS) {
+	                    jQuery('link[truescript]').each(function () {
+	                        jQuery(this).remove();
+	                    });
+	                    this.properties.extCSS.split(',').forEach(function (css) {
+	                        jQuery('head').append('<link truescript rel="stylesheet" href="' + css + '" type="text/css" />');
+	                    });
+	                }
+	                if (this.properties.htmlEditor) {
+	                    jQuery(this.domElement).html(this.properties.htmlEditor);
+	                }
+	            }
+	        } else if (!this.hasLoaded) {
     this.domElement.innerHTML = `
       <div class="${styles.helloWorld}">
         <div class="${styles.container}">
@@ -67,6 +76,17 @@ export default class TrueScriptEditorWebPart extends BaseClientSideWebPart<ITrue
     
   }
 
+  private getScript(scrArr, callback) {
+    var ind = 0;
+    scrArr.forEach(function (scr) {
+        window['jQuery'].getScript(scr, function () {
+            if (++ind == scrArr.length) {
+                callback();
+            }
+        });
+    });  
+  }
+
   public editProperties(){
     this.context.propertyPane.open();
   }
@@ -74,7 +94,14 @@ export default class TrueScriptEditorWebPart extends BaseClientSideWebPart<ITrue
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
-
+  protected onPropertyPaneConfigurationComplete() {
+	        this.render();
+	    };
+  protected onPropertyPaneFieldChanged(propertyPath, oldValue, newValue) {
+	        if (oldValue != newValue) {
+	            this.hasLoaded = false;
+	        }
+	    };
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
