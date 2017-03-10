@@ -2,7 +2,7 @@
   "solution": {
     "name": "True Script Editor",
     "id": "ee1c0134-8052-4280-8448-287dd071fd0c",
-    "version": "1.0.0.1"
+    "version": "1.0.0.2"
   },
   "paths": {
     "zippedPackage": "solution/true-script-editor.sppkg"

@@ -30,6 +30,7 @@ true-script-editor|Jeremy Coleman (PC Professional, Inc.)
 
 Version|Date|Comments
 -------|----|--------
+1.0.2|March 10th, 2017|Updated External JS Loading function
 1.0.1|March 7th, 2017|Added HTML Editor option
 1.0.0|March 7th, 2017|Initial release
 
